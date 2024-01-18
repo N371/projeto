@@ -6,8 +6,6 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-
-
 public class Solange extends JFrame {
 
     private JTextField nomeDaClasseField;
@@ -39,7 +37,7 @@ public class Solange extends JFrame {
         // Nome da Classe
         panel.add(new JLabel("Nome da Classe:"));
         nomeDaClasseField = new JTextField();
-        nomeDaClasseField.setPreferredSize(new Dimension(200, 90));
+        nomeDaClasseField.setPreferredSize(new Dimension(200, 30));
         nomeDaClasseField.setMargin(insets);
         panel.add(nomeDaClasseField);
 
@@ -96,47 +94,58 @@ public class Solange extends JFrame {
         setVisible(true);
     }
 
-private void gerarCodigo() {
-    String nomeDaClasse = nomeDaClasseField.getText();
-    String propriedades = propriedadesField.getText();
-    boolean gerarConstrutores = gerarConstrutoresCheckbox.isSelected();
-    boolean gerarSets = gerarSetsCheckbox.isSelected();
-    boolean gerarGets = gerarGetsCheckbox.isSelected();
-    boolean gerarToString = gerarToStringCheckbox.isSelected();
+    private void gerarCodigo() {
+        String nomeDaClasse = nomeDaClasseField.getText();
+        String propriedades = propriedadesField.getText();
+        boolean gerarConstrutores = gerarConstrutoresCheckbox.isSelected();
+        boolean gerarSets = gerarSetsCheckbox.isSelected();
+        boolean gerarGets = gerarGetsCheckbox.isSelected();
+        boolean gerarToString = gerarToStringCheckbox.isSelected();
 
-    // Criação do conteúdo do arquivo
-    String codigoGerado = gerarConteudoClasse(nomeDaClasse, propriedades, gerarConstrutores, gerarSets, gerarGets, gerarToString);
+        // Criação do conteúdo do arquivo
+        String codigoGerado = gerarConteudoClasse(nomeDaClasse, propriedades, gerarConstrutores, gerarSets, gerarGets, gerarToString);
 
-    // Nome do arquivo
-    String nomeArquivo = nomeDaClasse + ".java";
+        // Nome do arquivo
+        String nomeArquivo = nomeDaClasse + ".java";
 
-    // Caminho do arquivo no mesmo diretório onde a aplicação está sendo executada
-    String caminhoArquivo = System.getProperty("user.dir") + "/" + nomeArquivo;
+        // Caminho do arquivo no mesmo diretório onde a aplicação está sendo executada
+        String caminhoArquivo = System.getProperty("user.dir") + "/" + nomeArquivo;
 
-    // Gravação do conteúdo no arquivo
-    try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminhoArquivo))) {
-        writer.write(codigoGerado);
-        System.out.println("Arquivo gerado com sucesso: " + caminhoArquivo);
-    } catch (IOException e) {
-        e.printStackTrace();
+        // Gravação do conteúdo no arquivo
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(caminhoArquivo))) {
+            writer.write(codigoGerado);
+            System.out.println("Arquivo gerado com sucesso: " + caminhoArquivo);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
-}
-		
-// Método para gerar o conteúdo da classe com base nas opções selecionadas
-private String gerarConteudoClasse(String nomeDaClasse, String propriedades, boolean gerarConstrutores,
-                                     boolean gerarSets, boolean gerarGets, boolean gerarToString) {
-    StringBuilder codigo = new StringBuilder();
 
-    // Pacote
-    codigo.append("package pacote;\n\n");
+    // Método para gerar o conteúdo da classe com base nas opções selecionadas
+    private String gerarConteudoClasse(String nomeDaClasse, String propriedades, boolean gerarConstrutores,
+                                        boolean gerarSets, boolean gerarGets, boolean gerarToString) {
+        StringBuilder codigo = new StringBuilder();
 
-    // Imports
-    codigo.append("/**\n");
-    codigo.append(" *\n");
-    codigo.append(" * @author nelson.correa@unimedsaocarlos.local\n");
-    codigo.append(" *\n");
-    codigo.append(" */\n");
-    codigo.append("public class ").append(nomeDaClasse).append(" {\n\n");
+        // Pacote
+        codigo.append("package pacote;\n\n");
+
+        // Imports
+        codigo.append("/**\n");
+        codigo.append(" *\n");
+        codigo.append(" * @author nelson.correa@unimedsaocarlos.local\n");
+        codigo.append(" *\n");
+        codigo.append(" */\n");
+        codigo.append("\n");
+       
+
+
+	codigo.append("public class ").append(nomeDaClasse).append(" {\n\n");
+
+        // Construtores
+        if (gerarConstrutores) {
+            codigo.append("    public ").append(nomeDaClasse).append("() {\n");
+            codigo.append("    }\n\n");
+        }
+
 
     // Propriedades
     if (!propriedades.isEmpty()) {
@@ -147,75 +156,87 @@ private String gerarConteudoClasse(String nomeDaClasse, String propriedades, boo
                 String tipo = partes[0];
                 String nome = partes[1];
                 codigo.append("    private ").append(tipo).append(" ").append(nome).append(";\n");
+
+                // Getter
+                codigo.append("    public ").append(tipo).append(" get").append(capitalize(nome)).append("() {\n");
+                codigo.append("        return ").append(nome).append(";\n");
+                codigo.append("    }\n\n");
+
+                // Setter
+                codigo.append("    public void set").append(capitalize(nome)).append("(").append(tipo).append(" ").append(nome).append(") {\n");
+                codigo.append("        this.").append(nome).append(" = ").append(nome).append(";\n");
+                codigo.append("    }\n\n");
             }
         }
         codigo.append("\n");
     }
 
-    // Construtores
-    if (gerarConstrutores) {
-        codigo.append("    public ").append(nomeDaClasse).append("() {\n");
-        codigo.append("    }\n\n");
-    }
 
-    // Getters
-    if (gerarGets) {
-        if (!propriedades.isEmpty()) {
-            String[] props = propriedades.split(",");
-            for (String prop : props) {
-                String[] partes = prop.trim().split(" ");
-                if (partes.length == 2) {
-                    String tipo = partes[0];
-                    String nome = partes[1];
-                    codigo.append("    public ").append(tipo).append(" get").append(capitalize(nome)).append("() {\n");
-                    codigo.append("        return ").append(nome).append(";\n");
-                    codigo.append("    }\n\n");
+
+
+        // Getters
+        if (gerarGets) {
+            if (!propriedades.isEmpty()) {
+                String[] props = propriedades.split(",");
+                for (String prop : props) {
+                    String[] partes = prop.trim().split(" ");
+                    if (partes.length == 2) {
+                        String tipo = partes[0];
+                        String nome = partes[1];
+                        codigo.append("    public ").append(tipo).append(" get").append(capitalize(nome)).append("() {\n");
+                        codigo.append("        return ").append(nome).append(";\n");
+                        codigo.append("    }\n\n");
+                    }
                 }
             }
         }
-    }
 
-    // Setters
-    if (gerarSets) {
-        if (!propriedades.isEmpty()) {
-            String[] props = propriedades.split(",");
-            for (String prop : props) {
-                String[] partes = prop.trim().split(" ");
-                if (partes.length == 2) {
-                    String tipo = partes[0];
-                    String nome = partes[1];
-                    codigo.append("    public void set").append(capitalize(nome)).append("(").append(tipo).append(" ").append(nome).append(") {\n");
-                    codigo.append("        this.").append(nome).append(" = ").append(nome).append(";\n");
-                    codigo.append("    }\n\n");
+        // Setters
+        if (gerarSets) {
+            if (!propriedades.isEmpty()) {
+                String[] props = propriedades.split(",");
+                for (String prop : props) {
+                    String[] partes = prop.trim().split(" ");
+                    if (partes.length == 2) {
+                        String tipo = partes[0];
+                        String nome = partes[1];
+                        codigo.append("    public void set").append(capitalize(nome)).append("(").append(tipo).append(" ").append(nome).append(") {\n");
+                        codigo.append("        this.").append(nome).append(" = ").append(nome).append(";\n");
+                        codigo.append("    }\n\n");
+                    }
                 }
             }
         }
-    }
 
-    // toString
-    if (gerarToString) {
-        codigo.append("    @Override\n");
-        codigo.append("    public String toString() {\n");
-        codigo.append("        return \"").append(nomeDaClasse).append("{\"");
-        if (!propriedades.isEmpty()) {
-            String[] props = propriedades.split(",");
-            for (String prop : props) {
-                String[] partes = prop.trim().split(" ");
-                if (partes.length == 2) {
-                    String nome = partes[1];
-                    codigo.append(" + \"").append(nome).append("=\" + ").append(nome).append(" + \", \"");
+        // toString
+        if (gerarToString) {
+            codigo.append("    @Override\n");
+            codigo.append("    public String toString() {\n");
+            codigo.append("        return \"").append(nomeDaClasse).append("{\"");
+            if (!propriedades.isEmpty()) {
+                String[] props = propriedades.split(",");
+                for (String prop : props) {
+                    String[] partes = prop.trim().split(" ");
+                    if (partes.length == 2) {
+                        String nome = partes[1];
+                        codigo.append(" + \"").append(nome).append("=\" + ").append(nome).append(" + \", \"");
+                    }
                 }
             }
+            codigo.append(" + '}'").append(";\n");
+            codigo.append("    }\n\n");
         }
-        codigo.append(" + '}'").append(";\n");
-        codigo.append("    }\n\n");
+
+        // Fim da classe
+        codigo.append("}\n");
+
+        return codigo.toString();
     }
 
-    // Fim da classe
-    codigo.append("}\n");
-
-    return codigo.toString();
-}
+    // Método auxiliar para capitalizar a primeira letra de uma string
+    private String capitalize(String str) {
+        return Character.toUpperCase(str.charAt(0)) + str.substring(1);
+    }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
@@ -225,12 +246,5 @@ private String gerarConteudoClasse(String nomeDaClasse, String propriedades, boo
             }
         });
     }
-// Método auxiliar para capitalizar a primeira letra de uma string
-private String capitalize(String str) {
-    return Character.toUpperCase(str.charAt(0)) + str.substring(1);
-}
-
-
-
 }
 
