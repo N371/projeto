@@ -6,8 +6,8 @@ public class geraFile{
        private String name;
        private String Text;       
 
-       public void geraFile(String name, String Text){
-          this.name = name;
+       public geraFile(String name, String Text){
+          this.name = name + ".java";
    	  this.Text = Text;	  
        }
        public boolean geraFileExecute(){
@@ -25,4 +25,4 @@ public class geraFile{
 }
 
 
-
+}

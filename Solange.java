@@ -32,6 +32,7 @@ public class Solange{
 			"Informe se gera construtor com todas as propriedades S/N",
 			"Informe se gera método toString"
 		};
+	
 
 		System.out.println(msg[0]);
 		System.out.println(msg[1]);
@@ -111,8 +112,10 @@ public class Solange{
 	//		System.out.println("Construtor completo  :  \n" + StrConc);
 		}
 
-
+            
             SendTxt = "public class" + className + "{" + StrConc + "\n" + StrCons + StrSets + StrGets + txtPropriedades + "\n}"; 
-            System.out.println(SendTxt);
+            geraFile GeraFile = new geraFile(className,SendTxt);
+	    GeraFile.geraFileExecute();
+	    System.out.println(SendTxt);
 	}
 }
