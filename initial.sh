@@ -3,6 +3,7 @@
 apt-get update
 apt-get upgrade -y
 apt-get install sudo -y
+apt-get install git -y
 apt-get install curl -y
 apt-get install vim -y
 
@@ -25,7 +26,7 @@ colorscheme PaperColor
 EOL
 
 # Execute o PluginInstall no vim
-vim +PlugInstall +qall
+vim +'PlugInstall --sync' +qa
 
 echo "Instalação e configuração concluíom sucesso!"
 
