@@ -1,34 +1,31 @@
 #!/bin/bash
 
-# Atualiza a lista de pacotes e instala o Git, o Sudo e o Vim
 apt-get update
-apt-get install -y sudo vim
+apt-get upgrade -y
+apt-get install sudo -y
+apt-get install curl -y
+apt-get install vim -y
 
-# Configura o usuário padrão para ter permissões de sudo sem senha
-echo '%sudo ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-# Adiciona um usuário não privilegiado para evitar execução de comandos como root
-useradd -m -s /bin/bash myuser
-usermod -aG sudo myuser
+git clone https://github.com/NLKNguyen/papercolor-theme.git ~/.vim/bundle/papercolor-theme
 
-# Troca para o usuário não privilegiado
-su - myuser << EOF
+cat <<EOL > ~/.vimrc
+set nocompatible
+filetype off
 
-# Configuração do Vim para carregar plugins
+call plug#begin('~/.vim/plugged')
 
-# Criação do diretório para plugins do Vim
-mkdir -p ~/.vim/pack/github/start
+Plug 'NLKNguyen/papercolor-theme'
 
-# Clone do repositório do PaperColor
-git clone https://github.com/N371/PaperColor ~/.vim/pack/github/start/PaperColor
+call plug#end()
 
-# Criação do arquivo de configuração do Vim
-echo 'syntax enable' >> ~/.vimrc
-echo 'set background=dark' >> ~/.vimrc
-echo 'colorscheme PaperColor' >> ~/.vimrc
+colorscheme PaperColor
+EOL
 
-EOF
+# Execute o PluginInstall no vim
+vim +PlugInstall +qall
 
-# Informa ao usuário que a instalação e configuração foram concluídas
 echo "Instalação e configuração concluíom sucesso!"
 
