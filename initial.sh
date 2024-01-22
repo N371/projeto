@@ -1,12 +1,5 @@
 #!/bin/bash
-
-apt-get update
-apt-get upgrade -y
-apt-get install sudo -y
-apt-get install git -y
-apt-get install curl -y
 apt-get install vim -y
-
 
 cat <<EOL > ~/.vimrc
 " ativar sintaxe colorida
