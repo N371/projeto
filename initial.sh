@@ -85,6 +85,15 @@ let g:ale_completion_enabled = 0
 source ~/.vim/coc.nvimrc
 EOL
 
+# Mover arquivos `coc-settings.json` e `coc.vimrc` para o diretório `~/.vim`
+cp ./coc-settings.json ~/.vim
+cp ./coc.vimrc ~/.vim
+
+# Dar permissão de execução aos arquivos movidos
+chmod +x ~/.vim/coc-settings.json
+chmod +x ~/.vim/coc.vimrc
+
+
 # Criar diretório e clonar repositórios adicionais
 mkdir -p ~/.vim/pack/git-plugins/start
 cd ~/.vim/pack/git-plugins/start
