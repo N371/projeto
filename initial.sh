@@ -85,10 +85,10 @@ let g:ale_completion_enabled = 0
 source ~/.vim/coc.nvimrc
 EOL
 
-cat <<EOL > ~/.vimrc
+cat <<EOL > ~/.vim/coc-settings.json
 EOL
 
-cat <<EOL > ~/.vimrc
+cat <<EOL > ~/.vim/coc.vimrc
 EOL
 
 
