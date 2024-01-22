@@ -90,8 +90,8 @@ mkdir -p ~/.vim/pack/git-plugins/start
 cd ~/.vim/pack/git-plugins/start
 
 # Mover arquivos `coc-settings.json` e `coc.vimrc` para o diretório onde está localizado o ~/.vimrc
-cp coc-settings.json ~/.vim/
-cp coc.vimrc ~/.vim/
+# cp coc-settings.json ~/.vim/
+# cp coc.vimrc ~/.vim/
 
 
 # Clonar repositórios
