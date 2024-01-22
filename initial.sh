@@ -7,23 +7,8 @@ apt-get install git -y
 apt-get install curl -y
 apt-get install vim -y
 
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
-git clone https://github.com/NLKNguyen/papercolor-theme.git ~/.vim/bundle/papercolor-theme
 
 cat <<EOL > ~/.vimrc
-set nocompatible
-filetype off
-
-call plug#begin('~/.vim/plugged')
-
-Plug 'NLKNguyen/papercolor-theme'
-
-call plug#end()
-
-colorscheme PaperColor
-
 " ativar sintaxe colorida
 syntax on
 
@@ -65,28 +50,37 @@ set tabstop=2 softtabstop=2 expandtab shiftwidth=2
 set foldmethod=syntax
 set foldlevel=99
 nnoremap <space> za
+
+colo materialbox
+
 let g:indentLine_enabled = 1
 map <c-k>i :IndentLinesToggle<cr>
+
 map <C-n> :NERDTreeToggle<cr>
 set encoding=utf8
 set guifont=Anonymice\ Nerd\ Font\ Mono:h12
+
 set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 let g:airline_statusline_ontop=0
 let g:airline_theme='base16_twilight'
+
 let g:airline#extensions#tabline#formatter = 'default'
 " navegação entre os buffers
 nnoremap <M-Right> :bn<cr>
 nnoremap <M-Left> :bp<cr>
 nnoremap <c-x> :bp\|bd #<cr>
+
 let g:ctrlp_custom_ignore = '\v[\/]\.(swp|zip)$'
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_show_hidden = 1
+
 filetype plugin on
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
 map cc <Plug>NERDCommenterInvert
+
 let g:ale_linters = {'python': ['flake8', 'pylint'], 'javascript': ['eslint']}
 let g:ale_completion_enabled = 0
 " let g:ale_fixers = {
@@ -94,8 +88,8 @@ let g:ale_completion_enabled = 0
 "  }
 " nmap <F10> :ALEFix<CR>
 " let g:ale_fix_on_save = 1
-source ~/.vim/coc.nvimrc
 
+source ~/.vim/coc.nvimrc
 EOL
 
 # Execute o PluginInstall no vim
