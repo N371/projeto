@@ -26,12 +26,12 @@ public class Solange{
 		String[] msg = {"Programa para geração de classe básica",
 			"Informe o Nome da Classe",
 			"Informe o nome da propriedade",
-			"Informe o tipo de dado da propriedade",
-			"Informe se a propriedade é public private ou protected",
+			"Informe o Classe Wrapper da variável Byte, Short, Integer, Long, Float, Double ou Character",
+			"Informe regras de acesso public, private, protected ou default",
 			"Informe se gera metodos set S/N",
 			"Informe se gera metodos get S/N",
 			"Informe se gera construtor com todas as propriedades S/N",
-			"Informe se gera método toString"
+			"Informe se gera método toString S/N"
 		};
 	
 
