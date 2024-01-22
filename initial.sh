@@ -85,6 +85,13 @@ let g:ale_completion_enabled = 0
 source ~/.vim/coc.nvimrc
 EOL
 
+cat <<EOL > ~/.vimrc
+EOL
+
+cat <<EOL > ~/.vimrc
+EOL
+
+
 # Criar diretório e clonar repositórios adicionais
 mkdir -p ~/.vim/pack/git-plugins/start
 cd ~/.vim/pack/git-plugins/start
