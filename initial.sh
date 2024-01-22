@@ -416,22 +416,6 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 let g:coc_disable_startup_warning = 1
 EOL
 
-cat <<EOL > ~/.vim/coc-settings.json
-{
-  "jedi.enable": true,
-  "jedi.startupMessage": true,
-  "jedi.markupKindPreferred": "plaintext",
-  "jedi.trace.server": true,
-  "jedi.jediSettings.autoImportModules": [],
-  "jedi.executable.command": "jedi-language-server",
-  "jedi.executable.args": [],
-  "jedi.completion.disableSnippets": false,
-  "jedi.diagnostics.enable": true,
-  "jedi.diagnostics.didOpen": true,
-  "jedi.diagnostics.didChange": true,
-  "jedi.diagnostics.didSave": true
-}
-EOL
 
 cat <<EOL > ~/.vim/coc.vimrc
 EOL
