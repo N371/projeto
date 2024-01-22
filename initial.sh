@@ -278,5 +278,33 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 let g:coc_disable_startup_warning = 1
 EOL
 
+# Criar diretório e clonar repositórios adicionais
+mkdir -p ~/.vim/pack/git-plugins/start
+cd ~/.vim/pack/git-plugins/start
+
+# Clonar repositórios
+repos=(
+  'https://github.com/mhinz/vim-startify'
+  'https://github.com/rafi/awesome-vim-colorschemes'
+  'https://github.com/tomasiser/vim-code-dark'
+  'https://github.com/Yggdroot/indentLine'
+  'https://github.com/preservim/nerdtree'
+  'https://github.com/ryanoasis/vim-devicons'
+  'https://github.com/vim-airline/vim-airline'
+  'https://github.com/vim-airline/vim-airline-themes'
+  'https://github.com/ctrlpvim/ctrlp.vim'
+  'https://github.com/preservim/nerdcommenter'
+  'https://github.com/mattn/emmet-vim'
+  'https://github.com/dense-analysis/ale'
+  'https://github.com/sheerun/vim-polyglot'
+  'https://github.com/neoclide/coc.nvim'
+)
+
+for repo in "${repos[@]}"; do
+  git clone "$repo"
+done
+
+# Voltar ao diretório original
+cd -
 
 
