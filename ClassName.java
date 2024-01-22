@@ -1,5 +1,10 @@
-public classClassName{
-public ClassName( String nome, String sexo, Int idade,)
+public class ClassName{
+
+private String nome;
+private String sexo;
+private Integer idade;
+
+public ClassName( String nome, String sexo, Integer idade)
 {
 this.nome = nome;
 this.sexo = sexo;
@@ -13,7 +18,7 @@ public void setnome(String nome) {
 public void setsexo(String sexo) {
       this.sexo=sexo;
 }
-public void setidade(Int idade) {
+public void setidade(Integer idade) {
       this.idade=idade;
 }
 public String getnome() {
@@ -22,10 +27,11 @@ public String getnome() {
 public String getsexo() {
       return this.sexo;
 }
-public Int getidade() {
+public Integer getidade() {
       return this.idade;
 }
 @Override
  public String toString(){
- return ClassName{"nome=" + nome "sexo=" + sexo "idade=" + idade }
+ return "ClassName{" + "nome=" + nome+"sexo=" + sexo+"idade=" + idade + '}';
+}
 }

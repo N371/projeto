@@ -21,7 +21,8 @@ public class Solange{
 		String StrConcI = "";
 		String StrHead = "";
 		String StrNms  = "";
-	        String SendTxt = "";	
+	        String SendTxt = "";
+	        String access  = "";	
 		String[] msg = {"Programa para geração de classe básica",
 			"Informe o Nome da Classe",
 			"Informe o nome da propriedade",
@@ -78,17 +79,27 @@ public class Solange{
 		System.out.println("Gerar construtores : " + Ctgeneration);
 		System.out.println("Gerar metodos tostring : " + Togeneration);
 		System.out.println(" Valor das propriedades : ");
-		txtPropriedades = "\n@Override\n public String toString(){" + "\n return " + className + "{";
+		txtPropriedades = "\n@Override\n public String toString(){" + "\n return " + "\"" + className + "{\" + ";
 		for(Propriedades p : propriedade){
-			txt2Propriedades = txt2Propriedades + "\""+p.getName()+"=\" + " + p.getName() + " "; 
+		       if(p == propriedade.get(propriedade.size() - 1)){
+				txt2Propriedades = txt2Propriedades + "\""+p.getName()+"=\" + " + p.getName();
+		       }else{
+				txt2Propriedades = txt2Propriedades + "\""+p.getName()+"=\" + " + p.getName() + "+";
+		       }
+
 		} 
-		txtPropriedades = txtPropriedades + txt2Propriedades + "}";
+		txtPropriedades = txtPropriedades + txt2Propriedades + " + " + "\'}\';";
           //      System.out.println("To string : "+ txtPropriedades);
 
 		if (Stgeneration) {
 			for (Propriedades p : propriedade) {
 				StrSets = StrSets + "\npublic void set" + p.getName() + "(" + p.getType() + " " + p.getName() + ") {\n      this." + p.getName() + "=" + p.getName() + ";\n}";
-			        StrHead = StrHead +" "+ p.getType() +" "+ p.getName() +",";	
+				    // Não concatena a vírgula se for o último elemento
+    					if (p == propriedade.get(propriedade.size() - 1)) {
+        					 StrHead = StrHead +" "+ p.getType() +" "+ p.getName();
+    					} else {
+			        		StrHead = StrHead +" "+ p.getType() +" "+ p.getName() +",";
+    					}	
 			}
 	//		System.out.println("StrSets  :  " + StrSets);
 		}
@@ -112,8 +123,12 @@ public class Solange{
 	//		System.out.println("Construtor completo  :  \n" + StrConc);
 		}
 
+              for(Propriedades p :  propriedade){
+	            access =  access + "\n" + p.getChangeAccess() + " " + p.getType() + " " + p.getName() + ";";
+	      }
+
             
-            SendTxt = "public class" + className + "{" + StrConc + "\n" + StrCons + StrSets + StrGets + txtPropriedades + "\n}"; 
+            SendTxt = "public class " + className + "{" + "\n" + access + "\n" + StrConc + "\n" + StrCons + StrSets + StrGets + txtPropriedades + "\n}" + "\n}"; 
             geraFile GeraFile = new geraFile(className,SendTxt);
 	    GeraFile.geraFileExecute();
 	    System.out.println(SendTxt);
