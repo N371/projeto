@@ -1,15 +1,15 @@
-public class Propriedades{
+public class ger_propriedades{
 	private String name;
 	private String type;
 	private String changeAccess;
 
 
 	// Construtor vazio
-	public Propriedades() {
+	public ger_propriedades() {
 	}
 
 	// Construtor com todos os campos
-	public Propriedades(String name, String type, String changeAccess) {
+	public ger_propriedades(String name, String type, String changeAccess) {
 		this.name = name;
 		this.type = type;
 		this.changeAccess = changeAccess;
@@ -36,7 +36,7 @@ public class Propriedades{
 	}
 
 
-	// Método toString
+	// Metodo toString
 	@Override
 	public String toString() {
 		return "Propriedades{" +

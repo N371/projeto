@@ -3,10 +3,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-public class Solange{
+public class ger_slg{
 	public static void main(String[] args){
 		Scanner scanner = new Scanner(System.in);
-		List<Propriedades> propriedade = new ArrayList<>();
+		List<ger_propriedades> propriedade = new ArrayList<>();
 		boolean Stgeneration = false;
 		boolean Gtgeneration = false;
 		boolean Ctgeneration = false;
@@ -23,15 +23,15 @@ public class Solange{
 		String StrNms  = "";
 	        String SendTxt = "";
 	        String access  = "";	
-		String[] msg = {"Programa para geração de classe básica",
+		String[] msg = {"Programa para geracao de classe",
 			"Informe o Nome da Classe",
 			"Informe o nome da propriedade",
-			"Informe o Classe Wrapper da variável Byte, Short, Integer, Long, Float, Double ou Character",
+			"Informe o Classe Wrapper da variavel Byte, Short, Integer, Long, Float, Double ou Character",
 			"Informe regras de acesso public, private, protected ou default",
 			"Informe se gera metodos set S/N",
 			"Informe se gera metodos get S/N",
 			"Informe se gera construtor com todas as propriedades S/N",
-			"Informe se gera método toString S/N"
+			"Informe se gera metodo toString S/N"
 		};
 	
 
@@ -44,7 +44,7 @@ public class Solange{
 			System.out.println(msg[2]);
 			String sair = scanner.next();
 			if(sair.equals("sair")) break;
-			Propriedades prop = new Propriedades();
+			ger_propriedades prop = new ger_propriedades();
 			prop.setName(sair);
 			System.out.println(msg[3]);
 			prop.setType(scanner.next());
@@ -80,7 +80,7 @@ public class Solange{
 		System.out.println("Gerar metodos tostring : " + Togeneration);
 		System.out.println(" Valor das propriedades : ");
 		txtPropriedades = "\n@Override\n public String toString(){" + "\n return " + "\"" + className + "{\" + ";
-		for(Propriedades p : propriedade){
+		for(ger_propriedades p : propriedade){
 		       if(p == propriedade.get(propriedade.size() - 1)){
 				txt2Propriedades = txt2Propriedades + "\""+p.getName()+"=\" + " + p.getName();
 		       }else{
@@ -92,9 +92,9 @@ public class Solange{
           //      System.out.println("To string : "+ txtPropriedades);
 
 		if (Stgeneration) {
-			for (Propriedades p : propriedade) {
+			for (ger_propriedades p : propriedade) {
 				StrSets = StrSets + "\npublic void set" + p.getName() + "(" + p.getType() + " " + p.getName() + ") {\n      this." + p.getName() + "=" + p.getName() + ";\n}";
-				    // Não concatena a vírgula se for o último elemento
+				    // Naoo concatena a virgula se for do ultimo element
     					if (p == propriedade.get(propriedade.size() - 1)) {
         					 StrHead = StrHead +" "+ p.getType() +" "+ p.getName();
     					} else {
@@ -105,7 +105,7 @@ public class Solange{
 		}
 
 		if (Gtgeneration) {
-			for (Propriedades p : propriedade) {
+			for (ger_propriedades p : propriedade) {
 				StrGets = StrGets + "\npublic " + p.getType() + " get" + p.getName() + "() {\n      return this." + p.getName() + ";\n}";
 			}
 	//		System.out.println("GtrSets  :  " + StrGets);
@@ -116,20 +116,20 @@ public class Solange{
 		if (Ctgeneration) {
 				StrConc = "public " + className +"("+StrHead+")\n{"; 
 
-			for (Propriedades p : propriedade) {
+			for (ger_propriedades p : propriedade) {
 				StrConcI = StrConcI + "\nthis." + p.getName() + " = " + p.getName() + ";";
 			}
 			StrConc = "\n"+ StrConc + StrConcI +  "\n}";
 	//		System.out.println("Construtor completo  :  \n" + StrConc);
 		}
 
-              for(Propriedades p :  propriedade){
+              for(ger_propriedades p :  propriedade){
 	            access =  access + "\n" + p.getChangeAccess() + " " + p.getType() + " " + p.getName() + ";";
 	      }
 
             
             SendTxt = "public class " + className + "{" + "\n" + access + "\n" + StrConc + "\n" + StrCons + StrSets + StrGets + txtPropriedades + "\n}" + "\n}"; 
-            geraFile GeraFile = new geraFile(className,SendTxt);
+            ger_file GeraFile = new ger_file(className,SendTxt);
 	    GeraFile.geraFileExecute();
 	    System.out.println(SendTxt);
 	}

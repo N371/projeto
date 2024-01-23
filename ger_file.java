@@ -2,11 +2,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class geraFile{
+public class ger_file{
        private String name;
        private String Text;       
 
-       public geraFile(String name, String Text){
+       public ger_file(String name, String Text){
           this.name = name + ".java";
    	  this.Text = Text;	  
        }

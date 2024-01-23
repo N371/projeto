@@ -1,7 +1,7 @@
   import java.util.Scanner;
   
 
-  public class conect{
+  public class ger_gnsd{
   	public static void main(String[] arg){
 		String head = "";
                 String usuario = "";
@@ -20,13 +20,13 @@
 	projetos = scanner.next();
 	System.out.print("\033[H\033[2J");
 
-	head ="import java.sql.*;" + "\n" + "public class conexadoBancoDados{\n" + 
+	head ="import java.sql.*;" + "\n" + "public class conexaoBandoCados{\n" + 
         "Connection conBanco;" + "\n" + "public boolean abrirConexao(){" + "\n" + 
-	"String url = \"jdbc:mysql://localhost/" + projetos + "?user=" + usuario +"password="  + senha +"; \""  +
+	"String url = \"jdbc:mysql://localhost/" + projetos + "?user=" + usuario +"password="  + senha +";\";"  +
 	"\n try{ \n" + "}catch(Exception erro){erro.printStackTrace();" + "\n" + "return false;" + "\n" + "}" + "\n" + "}" + "}";
 	
 //System.out.println(head);
-         geraFile GeraFile = new geraFile("conexaoBandoCados",head);
+         ger_file GeraFile = new ger_file("conexaoBandoCados",head);
          GeraFile.geraFileExecute();
             	 
 	
