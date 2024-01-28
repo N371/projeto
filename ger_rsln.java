@@ -44,42 +44,45 @@ public class ger_rsln {
 			 Integer tam = scanner.nextInt();
 			 System.out.println("Este campo pode conter valor nulo ? S/N");
                          String resp = scanner.next();
-			 if(resp.toUpperCase().equals("S"){
+			 if(resp.toUpperCase().equals("S")){
 				 String Linha = matcher.group(3) + "VARCHAR(" + tam + ")" + "NOT NULL";
+
+		      header.add(Linha);
 	                 }else{
 			         String Linha = matcher.group(3) + "VARCHAR9" + tam + ")";
-			 }		 
+
 		      header.add(Linha);
+			 }		 
 		      }
-	              if (matcher.out.println(2)=="Integer"){
+	              if (matcher.group(2)=="Integer"){
 		         System.out.println("Seu campo Integer tem restricao de quantidade de casas? S/N");
 			 String respInt = scanner.next();
-			 if (respInt.toUpperCase().equals("S"){
+			 if (respInt.toUpperCase().equals("S")){
 			      System.out.println("Entre com o tamanho para restringir Int");
-                              Integer tamInt = nextInt();
+                              Integer tamInt = scanner.nextInt();
 			 } 
                          System.out.println("Seu campo Integer aceita numeros menores que zero?  S/N");
                          String respIntUnsi = scanner.next();
                          if (respIntUnsi.toUpperCase().equals("S")){
 			       String Unsigned = "UNSIGNEC";
-			 }else{Unsigned = ""};
+			 }else{String Unsigned = "";};
                          System.out.println("Seu campo Integer devera ser complementado com zeros a esquerda ate atingir tamanho padrao? S/N");
                        	 String respzerofill = scanner.next();
                          if (respzerofill.toUpperCase().equals("S")){
 			 	String zerofill = "ZEROFILL";
-			 }else{zerofill = ""};			 
+			 }else{String zerofill = "";};			 
 		         System.out.println("Este campo aceitara valores nulos ?  S/N");
 			 String respnotnull = scanner.next();
 			 if(respnotnull.toUpperCase().equals("S")){
 			        String notnull = "NOT NULL"; 
-			 }else{notnull = ""}	
+			 }else{String notnull = "";}	
                          System.out.println("Este campo eh autoincrementavel ?  S/N");
 			 String respautoincr = scanner.next();
        			 if(respautoincr.toUpperCase().equals("S")){
 			        String autoincrement = "AUTO_INCREMENT";
-			 }else{autoincrement=""}
+			 }else{String autoincrement="";}
                      	 System.out.println("Este campo eh chave primaria");
-	                 String respprimarykey = scanner.next();
+	                 String resprimarykey = scanner.next();
 	             	 if(resprimarykey.toUpperCase().equals("S")){
 			        String primarykey = "PRIMARY KEY";
 			 }	 
