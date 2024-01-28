@@ -11,6 +11,10 @@ import java.util.List;
 
 public class ger_rsln {
     public static void main(String[] args) throws IOException {
+        String varchars = "";
+        String strInteger = "";
+        String lineInt="";
+
 	System.out.print("\033[H\033[2J");
         System.out.println("***** Programa para geracao de arquivo sql *****");
         System.out.println("Entre com o nome de uma classe Java");
@@ -30,8 +34,6 @@ public class ger_rsln {
 	String tabela = scanner.next();
         List<String> header = new ArrayList<>(); 
         
-
-
         System.out.println("Analisando as variaveis");
         try {
             while ((linha = buffer.readLine()) != null) {
@@ -45,60 +47,71 @@ public class ger_rsln {
 			 System.out.println("Este campo pode conter valor nulo ? S/N");
                          String resp = scanner.next();
 			 if(resp.toUpperCase().equals("S")){
-				 String Linha = matcher.group(3) + "VARCHAR(" + tam + ")" + "NOT NULL";
-
-		      header.add(Linha);
+				 varchars = matcher.group(3) + "  " + "VARCHAR(" + tam + ")" + "NOT NULL";
+		         header.add(varchars);
 	                 }else{
-			         String Linha = matcher.group(3) + "VARCHAR9" + tam + ")";
-
-		      header.add(Linha);
+			         varchars = matcher.group(3) + "  " + "VARCHAR(" + tam + ")";
+		         header.add(varchars);
 			 }		 
 		      }
 	              if (matcher.group(2).matches("(.*)?Integer(.*)?")){
 		         System.out.println("Seu campo Integer tem restricao de quantidade de casas? S/N");
 			 String respInt = scanner.next();
+                         lineInt = "\n" + matcher.group(3);
 			 if (respInt.toUpperCase().equals("S")){
 			      System.out.println("Entre com o tamanho para restringir Int");
                               Integer tamInt = scanner.nextInt();
+                              lineInt = lineInt + "   Integer(" + tamInt + ")";
 			 } 
                          System.out.println("Seu campo Integer aceita numeros menores que zero?  S/N");
                          String respIntUnsi = scanner.next();
                          if (respIntUnsi.toUpperCase().equals("S")){
-			       String Unsigned = "UNSIGNEC";
-			 }else{String Unsigned = "";};
+			       lineInt = lineInt + " UNSIGNED ";
+                               
+			 }
                          System.out.println("Seu campo Integer devera ser complementado com zeros a esquerda ate atingir tamanho padrao? S/N");
                        	 String respzerofill = scanner.next();
                          if (respzerofill.toUpperCase().equals("S")){
-			 	String zerofill = "ZEROFILL";
-			 }else{String zerofill = "";};			 
+                               lineInt = lineInt + " ZEROFILL ";
+			 }			 
 		         System.out.println("Este campo aceitara valores nulos ?  S/N");
 			 String respnotnull = scanner.next();
 			 if(respnotnull.toUpperCase().equals("S")){
-			        String notnull = "NOT NULL"; 
-			 }else{String notnull = "";}	
+                               lineInt = lineInt + " NOT NULL ";			  
+			 }	
                          System.out.println("Este campo eh autoincrementavel ?  S/N");
 			 String respautoincr = scanner.next();
        			 if(respautoincr.toUpperCase().equals("S")){
-			        String autoincrement = "AUTO_INCREMENT";
-			 }else{String autoincrement="";}
+                                lineInt = lineInt + " AUTO_INCREMENT ";
+			 }
                      	 System.out.println("Este campo eh chave primaria");
 	                 String resprimarykey = scanner.next();
 	             	 if(resprimarykey.toUpperCase().equals("S")){
-			        String primarykey = "PRIMARY KEY";
+                               lineInt = lineInt  + " PRIMARY KEY";
 			 }	 
-		      }	      
+                         header.add(lineInt);
+		      }
                 }
             }
         } catch (IOException e) {
             System.out.println("Nao econtrou pladrao");
             System.out.println(e);
         } finally {
-            System.out.println("Programa finalizado!!!");
+            System.out.println("rotina processada.");
         }
 
         buffer.close();
         reader.close();
         scanner.close();
+
+                   for(String hd: header){
+                         System.out.println("Valor de header :  " + hd);
+			}
+
+         System.out.println("Programa terminado com sucesso !!!! arquivo gravado em :  " + base + "  " + arquivo);
+
+
+
     }
 }
 // meu_inteiro INT;
