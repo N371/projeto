@@ -22,8 +22,8 @@ public class ger_rsln {
         BufferedReader buffer = new BufferedReader(reader);
 
         Pattern pattern = Pattern.compile("(private|public|protected|final)\\s+(\\w+)\\s+(\\w+);"); 
-	String linha;
-       
+	String linha = "";
+
 	System.out.println("Informe o nome da Base de Dados");
 	String base = scanner.next();
 	System.out.println("Informe o nome da Tabela");
@@ -36,10 +36,10 @@ public class ger_rsln {
         try {
             while ((linha = buffer.readLine()) != null) {
                 Matcher matcher = pattern.matcher(linha);
-                if (matcher.find()) {
+                if (matcher.find()==true) {
 		    System.out.println("Tipo : "+matcher.group(2));
 		    System.out.println("Nome : "+matcher.group(3));
-                      if (matcher.group(2)=="String"){
+                      if (matcher.group(2).matches("(.*)?String(.*)?")){
 		         System.out.println("Entre com o tamanho do campo de String");
 			 Integer tam = scanner.nextInt();
 			 System.out.println("Este campo pode conter valor nulo ? S/N");
@@ -54,7 +54,7 @@ public class ger_rsln {
 		      header.add(Linha);
 			 }		 
 		      }
-	              if (matcher.group(2)=="Integer"){
+	              if (matcher.group(2).matches("(.*)?Integer(.*)?")){
 		         System.out.println("Seu campo Integer tem restricao de quantidade de casas? S/N");
 			 String respInt = scanner.next();
 			 if (respInt.toUpperCase().equals("S")){
