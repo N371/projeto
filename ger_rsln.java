@@ -44,14 +44,14 @@ public class ger_rsln {
 			 Integer tam = scanner.nextInt();
 			 System.out.println("Este campo pode conter valor nulo ? S/N");
                          String resp = scanner.next();
-			 if(resp.toUpperCase().equals("S"){
+			 if(resp.toUpperCase().equals("S")){
 				 String Linha = matcher.group(3) + "VARCHAR(" + tam + ")" + "NOT NULL";
 	                 }else{
 			         String Linha = matcher.group(3) + "VARCHAR9" + tam + ")";
 			 }		 
 		      header.add(Linha);
 		      }
-	              if (matcher.out.println(2)=="Integer"){
+	              if (matcher.out.println(2)=="Integer")){
 		         System.out.println("Seu campo Integer tem restricao de quantidade de casas? S/N");
 			 String respInt = scanner.next();
 			 if (respInt.toUpperCase().equals("S"){
