@@ -60,8 +60,15 @@ public class ger_rsln {
                          lineInt = "\n" + matcher.group(3);
 			 if (respInt.toUpperCase().equals("S")){
 			      System.out.println("Entre com o tamanho para restringir Int");
-                              Integer tamInt = scanner.nextInt();
-                              lineInt = lineInt + "   Integer(" + tamInt + ")";
+                                try{ 
+				Integer tamInt = scanner.nextInt();
+                                lineInt = lineInt + "   Integer(" + tamInt + ")";
+                                }catch(Exception e){
+				 System.out.println("Voce deve informar um campo Inteiro");
+				}finally{
+				 System.out.println("Entrada da restricao de tamanho do campo inteiro");
+				}
+
 			 } 
                          System.out.println("Seu campo Integer aceita numeros menores que zero?  S/N");
                          String respIntUnsi = scanner.next();
@@ -103,11 +110,15 @@ public class ger_rsln {
         buffer.close();
         reader.close();
         scanner.close();
-
+        String txt = "/n CREATE TABLE(";
                    for(String hd: header){
-                         System.out.println("Valor de header :  " + hd);
-			}
+//                         System.out.println("Valor de header :  " + hd);
+                         txt = txt + "/n" + hd;
 
+			}
+         txt = txt + ");";
+         System.out.println("Comando para o SQL criar a tabela  " + txt + "\n") ;
+           
          System.out.println("Programa terminado com sucesso !!!! arquivo gravado em :  " + base + "  " + arquivo);
 
 
