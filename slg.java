@@ -3,10 +3,10 @@ import java.util.List;
 import java.util.ArrayList;
 
 
-public class ger_slg{
+public class slg{
 	public static void main(String[] args){
 		Scanner scanner = new Scanner(System.in);
-		List<ger_propriedades> propriedade = new ArrayList<>();
+		List<propriedades> propriedade = new ArrayList<>();
 		boolean Stgeneration = false;
 		boolean Gtgeneration = false;
 		boolean Ctgeneration = false;
@@ -44,7 +44,7 @@ public class ger_slg{
 			System.out.println(msg[2]);
 			String sair = scanner.next();
 			if(sair.equals("sair")) break;
-			ger_propriedades prop = new ger_propriedades();
+			propriedades prop = new propriedades();
 			prop.setName(sair);
 			System.out.println(msg[3]);
 			prop.setType(scanner.next());
@@ -80,7 +80,7 @@ public class ger_slg{
 		System.out.println("Gerar metodos tostring : " + Togeneration);
 		System.out.println(" Valor das propriedades : ");
 		txtPropriedades = "\n@Override\n public String toString(){" + "\n return " + "\"" + className + "{\" + ";
-		for(ger_propriedades p : propriedade){
+		for(propriedades p : propriedade){
 		       if(p == propriedade.get(propriedade.size() - 1)){
 				txt2Propriedades = txt2Propriedades + "\""+p.getName()+"=\" + " + p.getName();
 		       }else{
@@ -92,7 +92,7 @@ public class ger_slg{
           //      System.out.println("To string : "+ txtPropriedades);
 
 		if (Stgeneration) {
-			for (ger_propriedades p : propriedade) {
+			for (propriedades p : propriedade) {
 				StrSets = StrSets + "\npublic void set" + p.getName() + "(" + p.getType() + " " + p.getName() + ") {\n      this." + p.getName() + "=" + p.getName() + ";\n}";
 				    // Naoo concatena a virgula se for do ultimo element
     					if (p == propriedade.get(propriedade.size() - 1)) {
@@ -105,7 +105,7 @@ public class ger_slg{
 		}
 
 		if (Gtgeneration) {
-			for (ger_propriedades p : propriedade) {
+			for (propriedades p : propriedade) {
 				StrGets = StrGets + "\npublic " + p.getType() + " get" + p.getName() + "() {\n      return this." + p.getName() + ";\n}";
 			}
 	//		System.out.println("GtrSets  :  " + StrGets);
@@ -116,20 +116,20 @@ public class ger_slg{
 		if (Ctgeneration) {
 				StrConc = "public " + className +"("+StrHead+")\n{"; 
 
-			for (ger_propriedades p : propriedade) {
+			for (propriedades p : propriedade) {
 				StrConcI = StrConcI + "\nthis." + p.getName() + " = " + p.getName() + ";";
 			}
 			StrConc = "\n"+ StrConc + StrConcI +  "\n}";
 	//		System.out.println("Construtor completo  :  \n" + StrConc);
 		}
 
-              for(ger_propriedades p :  propriedade){
+              for(propriedades p :  propriedade){
 	            access =  access + "\n" + p.getChangeAccess() + " " + p.getType() + " " + p.getName() + ";";
 	      }
 
             
             SendTxt = "public class " + className + "{" + "\n" + access + "\n" + StrConc + "\n" + StrCons + StrSets + StrGets + txtPropriedades + "\n}" + "\n}"; 
-            ger_file GeraFile = new ger_file(className,SendTxt);
+            file GeraFile = new file(className,SendTxt);
 	    GeraFile.geraFileExecute();
 	    System.out.println(SendTxt);
 	}

@@ -1,15 +1,15 @@
-public class ger_propriedades{
+public class propriedades{
 	private String name;
 	private String type;
 	private String changeAccess;
 
 
 	// Construtor vazio
-	public ger_propriedades() {
+	public propriedades() {
 	}
 
 	// Construtor com todos os campos
-	public ger_propriedades(String name, String type, String changeAccess) {
+	public propriedades(String name, String type, String changeAccess) {
 		this.name = name;
 		this.type = type;
 		this.changeAccess = changeAccess;
