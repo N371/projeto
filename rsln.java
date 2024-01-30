@@ -110,19 +110,16 @@ public class rsln {
         buffer.close();
         reader.close();
         scanner.close();
-        String txt = "/n CREATE TABLE(";
+        String txt = "\n CREATE TABLE(";
                    for(String hd: header){
 //                         System.out.println("Valor de header :  " + hd);
-                         txt = txt + "/n" + hd;
+                         txt = txt + "\n" + hd;
 
 			}
          txt = txt + ");";
          System.out.println("Comando para o SQL criar a tabela  " + txt + "\n") ;
            
          System.out.println("Programa terminado com sucesso !!!! arquivo gravado em :  " + base + "  " + arquivo);
-
-
-
     }
 }
 // meu_inteiro INT;
