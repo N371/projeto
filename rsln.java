@@ -47,22 +47,22 @@ public class rsln {
 			 System.out.println("Este campo pode conter valor nulo ? S/N");
                          String resp = scanner.next();
 			 if(resp.toUpperCase().equals("S")){
-				 varchars = matcher.group(3) + "  " + "VARCHAR(" + tam + ")" + "NOT NULL";
+				 varchars = matcher.group(3) + "  " + "VARCHAR(" + tam + ") " + "NOT NULL;\n";
 		         header.add(varchars);
 	                 }else{
-			         varchars = matcher.group(3) + "  " + "VARCHAR(" + tam + ")";
+			         varchars = matcher.group(3) + "  " + "VARCHAR(" + tam + ");\n";
 		         header.add(varchars);
 			 }		 
 		      }
 	              if (matcher.group(2).matches("(.*)?Integer(.*)?")){
 		         System.out.println("Seu campo Integer tem restricao de quantidade de casas? S/N");
 			 String respInt = scanner.next();
-                         lineInt = "\n" + matcher.group(3);
+                         lineInt = matcher.group(3);
 			 if (respInt.toUpperCase().equals("S")){
 			      System.out.println("Entre com o tamanho para restringir Int");
                                 try{ 
 				Integer tamInt = scanner.nextInt();
-                                lineInt = lineInt + "   Integer(" + tamInt + ")";
+                                lineInt = lineInt + "   INT(" + tamInt + ")";
                                 }catch(Exception e){
 				 System.out.println("Voce deve informar um campo Inteiro");
 				}finally{
@@ -95,7 +95,8 @@ public class rsln {
 	                 String resprimarykey = scanner.next();
 	             	 if(resprimarykey.toUpperCase().equals("S")){
                                lineInt = lineInt  + " PRIMARY KEY";
-			 }	 
+			 }
+		         lineInt = lineInt + ";\n";	 
                          header.add(lineInt);
 		      }
                 }
@@ -110,15 +111,16 @@ public class rsln {
         buffer.close();
         reader.close();
         scanner.close();
-        String txt = "\n CREATE TABLE(";
+        String txt = "\nCREATE TABLE " + tabela + " (\n";
                    for(String hd: header){
 //                         System.out.println("Valor de header :  " + hd);
-                         txt = txt + "\n" + hd;
+                         txt = txt +  hd;
 
 			}
          txt = txt + ");";
-         System.out.println("Comando para o SQL criar a tabela  " + txt + "\n") ;
-           
+         System.out.println("Comando para o SQL criar a tabela  " + txt ) ;
+         file File = new file(tabela,txt,"sql");
+	 File.geraFileExecute();
          System.out.println("Programa terminado com sucesso !!!! arquivo gravado em :  " + base + "  " + arquivo);
     }
 }

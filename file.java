@@ -5,9 +5,10 @@ import java.io.IOException;
 public class file{
        private String name;
        private String Text;       
+       private String Type;
 
-       public file(String name, String Text){
-          this.name = name + ".java";
+       public file(String name, String Text, String type){
+          this.name = name + "." + type;
    	  this.Text = Text;	  
        }
        public boolean geraFileExecute(){

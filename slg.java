@@ -129,7 +129,7 @@ public class slg{
 
             
             SendTxt = "public class " + className + "{" + "\n" + access + "\n" + StrConc + "\n" + StrCons + StrSets + StrGets + txtPropriedades + "\n}" + "\n}"; 
-            file GeraFile = new file(className,SendTxt);
+            file GeraFile = new file(className,SendTxt,"java");
 	    GeraFile.geraFileExecute();
 	    System.out.println(SendTxt);
 	}

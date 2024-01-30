@@ -1,16 +1,13 @@
-public class ClassName{
 
 private String nome;
 private String sexo;
-private Integer Idade;
-protected Floar sari;
+private Integer idade;
 
-public ClassName( String nome, String sexo, Integer Idade, Floar sari)
+public ClassName( String nome, String sexo, Integer idade)
 {
 this.nome = nome;
 this.sexo = sexo;
-this.Idade = Idade;
-this.sari = sari;
+this.idade = idade;
 }
 public ClassName(){
 }
@@ -20,11 +17,8 @@ public void setnome(String nome) {
 public void setsexo(String sexo) {
       this.sexo=sexo;
 }
-public void setIdade(Integer Idade) {
-      this.Idade=Idade;
-}
-public void setsari(Floar sari) {
-      this.sari=sari;
+public void setidade(Integer idade) {
+      this.idade=idade;
 }
 public String getnome() {
       return this.nome;
@@ -32,14 +26,12 @@ public String getnome() {
 public String getsexo() {
       return this.sexo;
 }
-public Integer getIdade() {
-      return this.Idade;
-}
-public Floar getsari() {
-      return this.sari;
+public Integer getidade() {
+      return this.idade;
 }
 @Override
  public String toString(){
- return "ClassName{" + "nome=" + nome+"sexo=" + sexo+"Idade=" + Idade+"sari=" + sari + '}';
+ return "ClassName{" + "nome=" + nome+"sexo=" + sexo+"idade=" + idade + '}';
 }
 }
+
