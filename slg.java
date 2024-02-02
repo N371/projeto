@@ -1,39 +1,15 @@
-import java.util.Scanner;
+emport java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 
 
 public class slg{
-	class enterProperties{
-	     private String nameProperties;
-	     private String typeProperties;
-	     private String acessPropertie;
-
-	     public void setNameProperties(String nameProperties){
-	            this.nameProperties = nameProperties;
-	     }
-	     public String getNameProperties(){
-	            return this.nameProperties;
-	     }
-
-	     public void setTypeProperties(String typeProperties){
-	     	    this.typeProperties = typeProperties;	
-	     }
-	     public String getTypeProperties(){
-	            return this.typeProperties;		
-	     }
-
-             public void setAccesProperties(String acessPropertie){
-	     	    this.acessPropertie = acessPropertie;
-	     }
-	     public String getAccesProperties(){
-	     	    return this.acessPropertie;
-	     }
 
 	}
 	public static void main(String[] args){
 		Scanner scanner = new Scanner(System.in);
 		List<propriedades> propriedade = new ArrayList<>();
+	        	        
 		boolean Stgeneration = false;
 		boolean Gtgeneration = false;
 		boolean Ctgeneration = false;
@@ -65,10 +41,11 @@ public class slg{
 		System.out.println(msg[0]);
 		System.out.println(msg[1]);
 		String className = scanner.next();
-		while(true) {
-			System.out.print("\033[H\033[2J");
+
+		while(true){
+		       	System.out.print("\033[H\033[2J");
 			System.out.println("Para sair digite sair");
-			System.out.println(msg[2]);
+		        System.out.println(msg[2]);
 			String sair = scanner.next();
 			if(sair.equals("sair")) break;
 			propriedades prop = new propriedades();
@@ -79,6 +56,9 @@ public class slg{
 			prop.setChangeAccess(scanner.next());
 			propriedade.add(prop);
 		}
+
+
+	for(Propriedades propriedade: prop) {
 		System.out.print("\033[H\033[2J");
 		System.out.println(msg[5]);
 		String setGeneration = scanner.next();
