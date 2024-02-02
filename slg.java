@@ -4,6 +4,33 @@ import java.util.ArrayList;
 
 
 public class slg{
+	class enterProperties{
+	     private String nameProperties;
+	     private String typeProperties;
+	     private String acessPropertie;
+
+	     public void setNameProperties(String nameProperties){
+	            this.nameProperties = nameProperties;
+	     }
+	     public String getNameProperties(){
+	            return this.nameProperties;
+	     }
+
+	     public void setTypeProperties(String typeProperties){
+	     	    this.typeProperties = typeProperties;	
+	     }
+	     public String getTypeProperties(){
+	            return this.typeProperties;		
+	     }
+
+             public void setAccesProperties(String acessPropertie){
+	     	    this.acessPropertie = acessPropertie;
+	     }
+	     public String getAccesProperties(){
+	     	    return this.acessPropertie;
+	     }
+
+	}
 	public static void main(String[] args){
 		Scanner scanner = new Scanner(System.in);
 		List<propriedades> propriedade = new ArrayList<>();
